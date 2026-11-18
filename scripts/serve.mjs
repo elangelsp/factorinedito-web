@@ -1,4 +1,4 @@
-// Vista previa local que imita GitHub Pages bajo el subdirectorio: node scripts/serve.mjs [puerto]
+// Vista previa local con la misma ruta base que producción: node scripts/serve.mjs [puerto]
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";

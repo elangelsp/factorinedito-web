@@ -77,7 +77,7 @@ ${main}
   </nav>
   <div class="footer-contact">
     <p>Contacto: ${contactLink()}</p>
-    <p class="footnote">Esta web no usa cookies, ni analítica, ni contenido incrustado de terceros. Se publica con ${ext("https://pages.github.com/", "GitHub Pages")}.</p>
+    <p class="footnote">Esta web no crea cookies, ni usa analítica, ni incrusta contenido de terceros. Se publica con ${ext(config.hosting.url, config.hosting.name)}.</p>
   </div>
 </footer>
 <script src="${url("site.js")}" defer></script>

@@ -36,7 +36,7 @@ write("404.html", notfound());
 
 const today = config.lastLegalUpdate;
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${PAGES.map(([p]) => `  <url><loc>${absUrl(p)}</loc><lastmod>${today}</lastmod></url>`).join("\n")}\n</urlset>\n`);
-// robots.txt solo cuenta en la raíz del host; en un sitio de proyecto (/factorinedito-web/) no se genera.
+// robots.txt solo cuenta en la raíz del host: si la web vive en un subdirectorio (basePath distinto de "/") no se genera.
 if (config.basePath === "/") write("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${absUrl("sitemap.xml")}\n`);
 
 const files = [];

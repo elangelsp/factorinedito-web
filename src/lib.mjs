@@ -11,7 +11,7 @@ export const esc = (s = "") => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;
 export const html = (strings, ...vals) => strings.reduce((out, s, i) => out + s + (i < vals.length ? render(vals[i]) : ""), "");
 const render = v => (v == null || v === false ? "" : Array.isArray(v) ? v.map(render).join("") : String(v));
 
-/** Internal URL under the GitHub Pages base path. */
+/** Internal URL under the configured base path ("/" on Cloudflare Workers). */
 export const url = (p = "") => config.basePath + p.replace(/^\//, "");
 export const absUrl = (p = "") => config.origin + url(p);
 

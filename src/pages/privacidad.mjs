@@ -34,8 +34,9 @@ export default function privacidad() {
     <h2 id="web">3. Esta web</h2>
     <ul>
       <li>Es una web estática: no tiene formularios, registro, comentarios ni base de datos.</li>
-      <li><strong>No usa cookies</strong> ni almacena información en tu navegador, y no incluye analítica, publicidad, vídeos incrustados ni otro contenido de terceros. Las fuentes tipográficas se sirven desde la propia web.</li>
-      <li>Está alojada en GitHub Pages (GitHub, Inc.). Según su ${ext("https://docs.github.com/es/pages/getting-started-with-github-pages/what-is-github-pages", "documentación")}, GitHub registra y almacena la dirección IP de quien visita una web de GitHub Pages con fines de seguridad, y la trata según su ${ext("https://docs.github.com/es/site-policy/privacy-policies/github-general-privacy-statement", "declaración de privacidad")}. El titular no tiene acceso a esos registros ni los utiliza.</li>
+      <li>No almacena información en tu navegador y no incluye analítica, publicidad, vídeos incrustados ni otro contenido de terceros. Las fuentes tipográficas se sirven desde la propia web.</li>
+      <li>Está alojada en ${config.hosting.name} (${config.hosting.company}). Para entregar las páginas y protegerlas frente a abusos, Cloudflare trata datos técnicos de cada visita, como la dirección IP, según su ${ext(config.hosting.privacyUrl, "política de privacidad")}. El titular no accede a esos datos ni tiene activada ninguna analítica.</li>
+      <li>La web no crea cookies. Cloudflare puede colocar cookies técnicas estrictamente necesarias para su protección frente a bots (por ejemplo, <code>__cf_bm</code>) cuando esa protección está activa; se describen en su ${ext(config.hosting.cookiesUrl, "lista de cookies")}.</li>
       <li>Si escribes al correo de contacto, tu mensaje y tu dirección se usarán solo para responderte y se conservarán mientras sea necesario para atender tu consulta.</li>
     </ul>
 

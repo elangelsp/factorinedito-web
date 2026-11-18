@@ -4,16 +4,16 @@ Web oficial de **Factor Inédito** («Lo extraordinario, explicado») y páginas
 aplicación que publica en el canal mediante Google OAuth y YouTube Data API v3: página de la aplicación, política de
 privacidad, condiciones de uso y aviso legal.
 
-Publicada en GitHub Pages: <https://elangelsp.github.io/factorinedito-web/>
+Publicada en Cloudflare Workers: <https://factorinedito-web.elangelsp.workers.dev/>
 
 | Página | URL |
 |---|---|
-| Inicio | https://elangelsp.github.io/factorinedito-web/ |
-| Sobre el canal | https://elangelsp.github.io/factorinedito-web/sobre/ |
-| AutoContent Studio | https://elangelsp.github.io/factorinedito-web/autocontent-studio/ |
-| Política de privacidad | https://elangelsp.github.io/factorinedito-web/privacidad/ |
-| Condiciones de uso | https://elangelsp.github.io/factorinedito-web/condiciones/ |
-| Aviso legal, cookies y contacto | https://elangelsp.github.io/factorinedito-web/legal/ |
+| Inicio | https://factorinedito-web.elangelsp.workers.dev/ |
+| Sobre el canal | https://factorinedito-web.elangelsp.workers.dev/sobre/ |
+| AutoContent Studio | https://factorinedito-web.elangelsp.workers.dev/autocontent-studio/ |
+| Política de privacidad | https://factorinedito-web.elangelsp.workers.dev/privacidad/ |
+| Condiciones de uso | https://factorinedito-web.elangelsp.workers.dev/condiciones/ |
+| Aviso legal, cookies y contacto | https://factorinedito-web.elangelsp.workers.dev/legal/ |
 
 ## Cómo está hecha
 - Web estática generada con un script de Node sin dependencias de ejecución (`src/build.mjs`). Sin servidor, sin base de
@@ -29,20 +29,27 @@ src/layout.mjs        cabecera, pie y metadatos (SEO, Open Graph, canonical)
 src/pages/*.mjs       una página por archivo
 src/styles.css        sistema visual
 scripts/check.mjs     pruebas: enlaces y anclas, metadatos, contraste, requisitos de Google/YouTube, secretos
-scripts/serve.mjs     vista previa local bajo /factorinedito-web/
+scripts/serve.mjs     vista previa local con la misma ruta base que producción
+wrangler.jsonc        configuración de Cloudflare Workers (static assets desde dist/)
 ```
 
 ## Uso
 ```bash
 npm ci
 npm test                    # genera dist/ y pasa todas las comprobaciones
-node scripts/serve.mjs      # http://127.0.0.1:8080/factorinedito-web/
+node scripts/serve.mjs      # http://127.0.0.1:8080/
 ```
 
 ## Despliegue
-Cada push a `main` ejecuta `.github/workflows/deploy.yml`: instala, genera, comprueba y publica `dist/` en GitHub Pages.
-Una sola vez: **Settings → Pages → Build and deployment → Source: GitHub Actions**. GitHub Pages sirve los sitios
-`github.io` por HTTPS.
+Cloudflare Workers Builds está conectado a este repositorio: cada push a `main` ejecuta la compilación y
+`npx wrangler deploy`, que publica `dist/` como *static assets* según `wrangler.jsonc` (sin código de Worker):
+`not_found_handling: "404-page"` sirve `404.html` con estado 404 y `html_handling: "auto-trailing-slash"` hace que
+`/sobre` redirija a `/sobre/`. `wrangler.jsonc` incluye `build.command`, así que `npx wrangler deploy` también genera la web
+antes de subirla. GitHub Actions (`.github/workflows/ci.yml`) solo compila y pasa las pruebas.
+
+La URL y la ruta base salen de `site.config.json` (`origin` y `basePath`). Todas las rutas internas (CSS, JS, fuentes,
+imágenes, páginas, canonical, Open Graph y sitemap) se generan a partir de esos dos valores, y `npm test` falla si algún
+enlace interno no existe en `dist/`.
 
 ## Datos pendientes de completar
 Edita `site.config.json` y haz push:
@@ -53,7 +60,6 @@ Edita `site.config.json` y haz push:
   [docs/GOOGLE_OAUTH_SETUP.md](docs/GOOGLE_OAUTH_SETUP.md)).
 
 ## Notas
-- `robots.txt` solo se lee en la raíz del dominio, así que no se genera mientras la web viva en un subdirectorio
-  (`basePath` distinto de `/`). El `sitemap.xml` sí se genera y puede enviarse desde Search Console.
+- `robots.txt` solo se lee en la raíz del dominio: se genera cuando `basePath` es `/` (como ahora) y apunta al `sitemap.xml`.
 - Los textos legales describen el funcionamiento real de AutoContent Studio (repositorio privado) a fecha de
   `lastLegalUpdate`. Son informativos y no constituyen asesoramiento jurídico.

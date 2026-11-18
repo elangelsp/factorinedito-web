@@ -1,0 +1,18 @@
+// Cloudflare Workers: web estática servida como «static assets» (sin código de Worker).
+// Despliegue: Workers Builds conectado a este repositorio (rama main) ejecuta la compilación y `npx wrangler deploy`.
+{
+  "name": "factorinedito-web",
+  "compatibility_date": "2026-11-18",
+  // Genera dist/ antes de desplegar, también con `npx wrangler deploy` en local.
+  "build": {
+    "command": "npm run build"
+  },
+  "assets": {
+    "directory": "./dist",
+    // Las rutas sin archivo devuelven 404 con dist/404.html (no es una SPA).
+    "not_found_handling": "404-page",
+    // /sobre redirige a /sobre/ y sirve sobre/index.html.
+    "html_handling": "auto-trailing-slash"
+  },
+  "workers_dev": true
+}
