@@ -1,0 +1,17 @@
+{
+  "name": "factorinedito-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Web oficial de Factor Inédito y páginas públicas de AutoContent Studio (privacidad, condiciones, información legal).",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "npm run build && npm run check"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": {
+    "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@fontsource-variable/newsreader": "5.3.0"
+  }
+}

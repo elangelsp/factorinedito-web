@@ -1,0 +1,22 @@
+{
+  "siteName": "Factor Inédito",
+  "tagline": "Lo extraordinario, explicado.",
+  "description": "Factor Inédito es un canal de divulgación en español sobre ciencia, universo, tecnología, historia, curiosidades y grandes preguntas, explicado con animaciones y fuentes comprobadas.",
+  "origin": "https://elangelsp.github.io",
+  "basePath": "/factorinedito-web/",
+  "lang": "es",
+  "lastLegalUpdate": "2026-11-18",
+  "contactEmail": "rataxd24@gmail.com",
+  "owner": {
+    "name": "",
+    "location": "",
+    "taxId": "",
+    "address": ""
+  },
+  "channels": {
+    "youtube": "",
+    "tiktok": ""
+  },
+  "googleSiteVerification": "",
+  "oauthAppName": "AutoContent Studio"
+}
