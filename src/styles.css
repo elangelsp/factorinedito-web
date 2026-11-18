@@ -53,6 +53,7 @@ p { margin: 0; }
   .site-nav.open { display: block; }
   .site-nav ul { flex-direction: column; }
   .site-nav a { font-size: 1.15rem; padding: 12px 6px; border-radius: 0; }
+  .site-nav a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--fosforo); padding-left: 16px; }
 }
 
 /* ---------- botones / canales ---------- */
